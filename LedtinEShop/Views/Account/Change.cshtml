@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Change Password";
+}
+
+<h2>Change Password</h2>
+@Html.ValidationSummary(true)
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label>Username</label>
+        @Html.TextBox("Id", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Current Password</label>
+        @Html.TextBox("CurrentPassword", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>New Password</label>
+        @Html.TextBox("NewPassword", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Confirm New Password</label>
+        @Html.TextBox("ConfirmNewPassword", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary">
+            <span class="glyphicon glyphicon-check"></span>
+            Change
+        </button>
+    </div>
+
+}
+

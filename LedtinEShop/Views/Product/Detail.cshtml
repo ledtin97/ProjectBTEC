@@ -1,0 +1,135 @@
+﻿@model LedtinEShop.Models.Product
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Product Detail</h2>
+<div class="panel">
+    <div class="row panel-body">
+        <img class="col-sm-5" src="~/images/products/@Model.Image" />
+        <div class="col-sm-7">
+            <table cellpadding="5">
+                <tr>
+                    <th>Id:</th>
+                    <td>@Model.Id</td>
+                </tr>
+                <tr>
+                    <th>Name:</th>
+                    <td>@Model.Name</td>
+                </tr>
+                <tr>
+                    <th>UnitPrice:</th>
+                    <td>$@Model.UnitPrice</td>
+                </tr>
+                <tr>
+                    <th>UnitBrief:</th>
+                    <td>@Model.UnitBrief</td>
+                </tr>
+                <tr>
+                    <th>Quantity:</th>
+                    <td>@Model.Quantity</td>
+                </tr>
+                <tr>
+                    <th>Discount:</th>
+                    <td>@Model.Discount</td>
+                </tr>
+                <tr>
+                    <th>Supplier:</th>
+                    <td>@Model.Supplier.Name</td>
+                </tr>
+                <tr>
+                    <th>Category:</th>
+                    <td>@Model.Category.Name</td>
+                </tr>
+                <tr class="btn-add-row">
+                    <th></th>
+                    <td>
+                        <div class="pull-right">
+                            <button class="btn btn-primary btn-xs" data-add-to-cart="@Model.Id">
+                                <span class="glyphicon glyphicon-shopping-cart"> Add to cart</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        @*<ul class="col-sm-7">
+                <li>Id: @Model.Id</li>
+                <li>Name: @Model.Name</li>
+                <li>UnitPrice: @Model.UnitPrice</li>
+                <li>UnitBrief: @Model.UnitBrief</li>
+                <li>Quantity: @Model.Quantity</li>
+                <li>Discount: @Model.Discount</li>
+                <li>Supplier: @Model.Supplier.Name</li>
+                <li>Category: @Model.Category.NameVN</li>
+            </ul>*@
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">@Html.Raw(Model.Description)</div>
+</div>
+
+<div class="row nn-thumb" style="padding:10px;">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Same category</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Same suplier</a></li>
+        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Views</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <fieldset>
+                @foreach (var p in Model.Category.Products)
+                {
+                    <a href="/Product/Detail/@p.Id">
+                        <img src="~/images/products/@p.Image" />
+                    </a>
+                }
+            </fieldset>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="profile">
+            <fieldset>
+                @foreach (var p in Model.Supplier.Products)
+                {
+                    <a href="/Product/Detail/@p.Id">
+                        <img src="~/images/products/@p.Image" />
+                    </a>
+                }
+            </fieldset>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="messages">
+            <fieldset>
+                @foreach (var p in ViewBag.Views)
+                {
+                    <a href="/Product/Detail/@p.Id">
+                        <img src="~/images/products/@p.Image" />
+                    </a>
+                }
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<style>
+    .row table tr {
+        border: 1px dotted gray;
+    }
+    .row table .btn-add-row{
+        border-bottom: hidden;
+        border-left: hidden;
+        border-right: hidden
+    }
+    .nn-thumb img {
+        width: 60px;
+        height: 60px;
+        padding: 3px;
+        margin: 2px;
+        border-radius: 4px;
+        border: 1px dotted gray;
+    }
+</style>
+

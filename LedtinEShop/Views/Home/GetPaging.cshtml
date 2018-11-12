@@ -1,0 +1,11 @@
+﻿@model IEnumerable<LedtinEShop.Models.Product>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="product_area">
+    @{ Html.RenderAction("Index", "Home", new { page = 1 });}
+</div>
+
+

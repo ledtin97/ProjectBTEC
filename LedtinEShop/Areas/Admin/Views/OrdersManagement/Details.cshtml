@@ -1,0 +1,124 @@
+﻿@model LedtinEShop.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    string delivered = ViewBag.a;
+}
+
+<h2>Details Order</h2>
+<button class="btn btn-default" onclick="printContent('dvmismatch')"><i class="glyphicon glyphicon-print"> Print</i></button>
+<hr />
+<div id="dvmismatch" class="form-horizontal">
+
+    <h4>Order</h4>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CustomerId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Receiver, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Receiver, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OrderDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(m => m.OrderDate, "{0:yyyy-MM-dd}", new { @class = "form-control"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RequireDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(m => m.RequireDate, "{0:yyyy-MM-dd}", new { @class = "form-control"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <fieldset>
+        <h4>Order Lines</h4>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Unit Price $</th>
+                    <th>Discount</th>
+                    <th>Quantity</th>
+                    <th>Amount $</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var detail in Model.OrderDetails)
+            {
+                    <tr>
+                        <td>@detail.Product.Name</td>
+                        <td width="100px">
+                            <img style="width: 100%" src="~/images/products//@detail.Product.Image" />
+                        </td>
+                        <td>@detail.UnitPrice</td>
+                        <td>@detail.Discount</td>
+                        <td>@detail.Quantity</td>
+                        <td>@(detail.Quantity * detail.UnitPrice * (1 - detail.Discount))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <a class="btn" href="@Session["OrderBackUrl"]">
+            <i class="fa fa-fast-backward"> Back to List</i>
+        </a>
+        @*@if (!delivered.Equals("-DeliveredByLedtinOnlineShop-"))
+        {
+            <a class="btn" href="~/Admin/OrdersManagement/Delivered/@Model.Id">
+                | <i class="fa fa-truck"> Delivered</i>
+            </a>
+        }*@
+    </div>
+</div>
+<script>
+function printContent(el){
+    var restorepage = document.body.innerHTML;
+    var printcontent = document.getElementById(el).innerHTML;
+    document.body.innerHTML = printcontent;
+    window.print();
+    document.body.innerHTML = restorepage;
+}
+</script>

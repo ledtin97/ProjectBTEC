@@ -1,0 +1,16 @@
+﻿@*<div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @using (Html.BeginForm("Search", "Product"))
+            {
+                @Html.TextBox("Keywords", null, new { placeholder = "Keywords", @class = "form-control" })
+            }
+        </div>
+    </div>
+</div>*@
+<li class="panel-body">
+    @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+    {
+        @Html.TextBox("Keywords", null, new { placeholder = "Keywords", @class = "form-control" })
+    }
+</li>

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<LedtinEShop.Areas.Admin.Models.Report>
+
+@{
+    ViewBag.Title = "SalesOfEachYear";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="~/Areas/Content/salesOfEachYear.js"></script>
+
+<h2>SalesOfEachYear</h2>
+
+<div>
+    <div class="box">
+        <div class="box-header">
+            @using (Html.BeginForm("ExportSalesOfEachYear", "Report", FormMethod.Post))
+            {
+                <h3 class="box-title">Data Table For Sales Of Each Year</h3>
+                <button class="btn btn-default"><i class="glyphicon glyphicon-export"> Export to Excel</i></button>
+                <a class="btn btn-default" onclick="printContent('dvmismatch', 'chart')"><i class="glyphicon glyphicon-print"> Print</i></a>
+            }           
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="form-inline">
+                    <i class="fa fa-calendar"></i>
+                    <strong> Year: </strong>
+                    <input type="month" name="date">
+                    <input type="submit" value="View" class="btn btn-default" />
+                    <!-- /.input group -->
+                </div>
+            </div>
+            <!-- /.form group -->
+        }
+
+        <div id="dvmismatch" class="box-body">
+            <label>Year: @ViewBag.Date</label>
+            <table id="example1" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Amount</th>
+                        <th>Min</th>
+                        <th>Max</th>
+                        <th>AVG</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                $ @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+                            <td>
+                                $ @Html.DisplayFor(modelItem => item.Min)
+                            </td>
+                            <td>
+                                $ @Html.DisplayFor(modelItem => item.Max)
+                            </td>
+                            <td>
+                                $ @Html.DisplayFor(modelItem => item.AVG)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+
+<fieldset id="chart" style="border: solid">
+    <legend>Chart for sales of each year </legend>
+    <div id="amountSalesOfEachYearChart"></div>
+    <div id="amountSalesOfEachYearPieChart" style="height: 400px"></div>
+</fieldset>
+
+<script>
+function printContent(el1, el2){
+    var restorepage = document.body.innerHTML;
+    var printcontentTitle = "<h1 style='text-align: center'>Sales of each year</h1>";
+    var printcontent1 = document.getElementById(el1).innerHTML;
+    var printcontent2 = document.getElementById(el2).innerHTML;
+    document.body.innerHTML = printcontentTitle + printcontent1 + printcontent2;
+    window.print();
+    document.body.innerHTML = restorepage;
+}
+
+$(document).ready(function () {
+    $('#example1').dataTable({
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+    });
+});
+</script>

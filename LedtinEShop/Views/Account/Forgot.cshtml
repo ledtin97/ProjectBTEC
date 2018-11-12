@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Forgot Password";
+}
+
+<h2>Forgot Password</h2>
+@Html.ValidationSummary(true)
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label>Username</label>
+        @Html.TextBox("Id", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Email Address</label>
+        @Html.TextBox("Email", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary">
+            <span class="glyphicon glyphicon-question-sign"></span>
+            Retrieve
+        </button>
+    </div>
+
+}
+

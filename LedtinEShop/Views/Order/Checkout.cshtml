@@ -1,0 +1,91 @@
+﻿@model Order
+@{
+    ViewBag.Title = "Checkout";
+}
+<h2>Ordering</h2>
+@Html.ValidationSummary(true)
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Unit Price</th>
+            <th>Discount</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in ShoppingCart.Cart.Items)
+        {
+            <tr>
+                <td>@p.Name</td>
+                <td>@p.UnitPrice</td>
+                <td>@p.Discount</td>
+                <td>@p.Quantity</td>
+                <td>@(p.Quantity * p.UnitPrice * (1 - p.Discount))</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<h2>Checkout</h2>
+@using (Html.BeginForm())
+{
+    <div class="row">
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-group col-sm-6">
+            <label>Customer</label>
+            @Html.TextBoxFor(m => m.CustomerId, new { @class = "form-control", @readonly = true })
+        </div>
+        <div class="form-group col-sm-6">
+            <label>Order Date</label>
+            @Html.TextBoxFor(m => m.OrderDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @readonly = true })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <label>Receiver</label>
+            @Html.TextBoxFor(m => m.Receiver, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-6">
+            <label>Required Date</label>
+            @Html.TextBoxFor(m => m.RequireDate, "{0:yyyy-MM-dd}", new { @class = "form-control nn-date" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <label>Address</label>
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-6">
+            <label>Amount</label>
+            @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", @readonly = true })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12">
+            <label>Notes</label>
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 4 })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12">
+            <button class="btn btn-primary">
+                <span class="glyphicon glyphicon-ok-sign"></span>
+                Purchase
+            </button>
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+        $(".nn-date").datepicker({
+            dateFormat: 'yy-mm-dd',
+            minDate:'+1D'
+        });
+    })
+</script>
+<style>
+    #ui-datepicker-div {
+        z-index: 2000 !important;
+    }
+</style>

@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Orders</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Customer</th>
+            <th>Address</th>
+            <th>Order Date</th>
+            <th>Amount</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Order o in Model)
+        {
+            <tr>
+                <td>@o.Id</td>
+                <td>@o.Customer.Id</td>
+                <td>@o.Address</td>
+                <td>@Html.FormatValue(o.OrderDate, "{0:yyyy-MM-dd}")</td>
+                <td>@Html.FormatValue(o.Amount, "{0:c}")</td>
+                <th>
+                    <a href="/Order/Detail/@o.Id" class="btn btn-sm btn-primary">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+

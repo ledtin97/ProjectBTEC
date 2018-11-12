@@ -1,0 +1,49 @@
+﻿<ul class="nav navbar-nav navbar-left">
+    <li><a href="~/Home/Index"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+    <li><a href="~/Home/About"><span class="glyphicon glyphicon-th-list"></span> About</a></li>
+    <li><a href="~/Home/Contact"><span class="glyphicon glyphicon-earphone"></span> Contact</a></li>
+    <li><a href=""><span class="glyphicon glyphicon-envelope"></span> Feedback</a></li>
+    <li><a href=""><span class="glyphicon glyphicon-question-sign"></span> Question sign</a></li>
+    <!--Search-->
+    @Html.Partial("_Search")
+    <!--/Search-->  
+</ul>
+
+<!--Account-->
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        @if (!XUser.Authenticated)
+        {
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Account <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="~/Account/Login">Log in</a></li>
+                <li><a href="~/Account/Forgot">Forgot password</a></li>
+                <li><a href="~/Account/Register">Register</a></li>
+            </ul>
+        }
+        else
+        {
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> @Session["Id"].ToString() <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="~/Account/Logoff">Log off</a></li>
+                <li><a href="~/Account/Change">Change password</a></li>
+                <li><a href="~/Account/Edit">Edit</a></li>
+                <li class="divider"></li>
+                <li><a href="~/Order/List">Order history</a></li>
+                <li><a href="~/Order/Items">Items</a></li>
+            </ul>
+        }
+    </li> 
+</ul>
+<!--/Account-->
+
+
+
+
+
+ 
+
+
+
+
+

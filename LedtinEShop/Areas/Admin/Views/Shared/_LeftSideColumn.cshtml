@@ -1,0 +1,84 @@
+﻿<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="~/Areas/Content/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>@Request.Cookies["Admin"].Values["AdminId"]</p>
+                <!-- Status -->
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- search form (Optional) -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu">
+            <li class="header">MANAGEMENTS</li>
+            <!-- Optionally, you can add icons to the links -->
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder-open-o"></i> <span>Database Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="~/Admin/CategoriesManagement/Index"><i class="fa  fa-thumbs-o-up"></i> Categories Management</a></li>
+                    <li><a href="~/Admin/SuppliersManagement/Index"><i class="fa fa-thumbs-o-up"></i> Suppliers Management</a></li>
+                    <li><a href="~/Admin/CustomersManagement/Index"><i class="fa fa-thumbs-o-up"></i> Customers Management</a></li>
+                    <li><a href="~/Admin/ProductsManagement/Index"><i class="fa fa-thumbs-o-up"></i> Products Management</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-file"></i> <span>Order Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="~/Admin/OrdersManagement/Index"><i class="fa  fa-video-camera"></i> All Order</a></li>
+                    <li><a href="~/Admin/OrdersManagement/OrdersDelivered"><i class="fa fa-video-camera"></i> Orders Delivered</a></li>
+                    <li><a href="~/Admin/OrdersManagement/OrdersNotDelivered"><i class="fa fa-video-camera"></i> Orders Not Delivered</a></li>
+                </ul>
+            </li>
+
+            <li class="header">REPORTS</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-bar-chart"></i> <span>Bussiness metric reports</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="~/Admin/Report/Inventory"><i class="fa fa-rocket"></i> Inventory</a></li>
+                    <li><a href="~/Admin/Report/SalesOfEachProduct"><i class="fa fa-rocket"></i> Sales of each product</a></li>
+                    <li><a href="~/Admin/Report/SalesOfEachCategory"><i class="fa fa-rocket"></i> Sales of each category</a></li>
+                    <li><a href="~/Admin/Report/SalesOfEachSupplier"><i class="fa fa-rocket"></i> Sales of each supplier</a></li>
+                    <li><a href="~/Admin/Report/SalesOfEachCustomer"><i class="fa fa-rocket"></i> Sales of each customer</a></li>
+                    <li><a href="~/Admin/Report/SalesOfEachMonth"><i class="fa fa-rocket"></i> Sales of each month</a></li>
+                    <li><a href="~/Admin/Report/SalesOfEachQuarter"><i class="fa fa-rocket"></i> Sales of each quarter</a></li>
+                    <li><a href="~/Admin/Report/SalesOfEachYear"><i class="fa fa-rocket"></i> Sales of each year</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+</aside>

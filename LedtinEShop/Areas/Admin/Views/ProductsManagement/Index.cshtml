@@ -1,0 +1,115 @@
+﻿@model IEnumerable<LedtinEShop.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Data Table For Products</h3>
+    </div>
+    <a class="btn" href="~/Admin/ProductsManagement/Create">
+        <i class="fa fa-plus-square"> Create New</i>
+    </a>
+    <!-- /.box-header -->
+    <div class="box-body" style="overflow-x:auto">
+        <table id="example1" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Id)</th>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.UnitBrief)</th>
+                    <th>@Html.DisplayNameFor(model => model.UnitPrice)</th>
+                    <th>@Html.DisplayNameFor(model => model.Image)</th>
+                    <th>@Html.DisplayNameFor(model => model.Available)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+                    <th>@Html.DisplayNameFor(model => model.Discount)</th>
+                    <th>@Html.DisplayNameFor(model => model.Special)</th>
+                    <th>@Html.DisplayNameFor(model => model.Latest)</th>
+                    <th>@Html.DisplayNameFor(model => model.Views)</th>
+                    <th>@Html.DisplayNameFor(model => model.Category)</th>
+                    <th>@Html.DisplayNameFor(model => model.Supplier)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UnitBrief)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                        </td>
+                        <td>
+                            <img src="~/images/products/@item.Image" style="height: 70px; width: 70px; border-radius: 30px" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Available)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Discount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Special)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Latest)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Views)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Supplier.Name)
+                        </td>
+                        <td>
+                            <a class="btn" href="~/Admin/ProductsManagement/Edit/@item.Id">
+                                <i class="fa fa-edit"> Edit</i>
+                            </a>
+                            <a class="btn" href="~/Admin/ProductsManagement/Details/@item.Id">
+                                <i class="fa fa-search"> Details</i>
+                            </a>
+                            <a class="btn" href="~/Admin/ProductsManagement/Delete/@item.Id">
+                                <i class="fa fa-ban"> Delete</i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Id)</th>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.UnitBrief)</th>
+                    <th>@Html.DisplayNameFor(model => model.UnitPrice)</th>
+                    <th>@Html.DisplayNameFor(model => model.Image)</th>
+                    <th>@Html.DisplayNameFor(model => model.Available)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+                    <th>@Html.DisplayNameFor(model => model.Discount)</th>
+                    <th>@Html.DisplayNameFor(model => model.Special)</th>
+                    <th>@Html.DisplayNameFor(model => model.Latest)</th>
+                    <th>@Html.DisplayNameFor(model => model.Views)</th>
+                    <th>@Html.DisplayNameFor(model => model.Category)</th>
+                    <th>@Html.DisplayNameFor(model => model.Supplier)</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>

@@ -1,0 +1,122 @@
+﻿@model IEnumerable<LedtinEShop.Models.Order>
+
+@{
+    ViewBag.Title = "OrdersNotDelivered";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Areas/Content/orderManagement.js"></script>
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Data Table For Orders Were Not Delivered</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        @Html.AntiForgeryToken()
+        <table id="example1" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OrderDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RequireDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Receiver)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Customer.Email)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequireDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Receiver)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer.Email)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="~/Admin/OrdersManagement/Details/@item.Id">
+                                <i class="fa fa-search"> Details</i>
+                            </a>
+                            <a class="btn btn-primary" data-delivery2="@item.Id">
+                                <i class="fa fa-truck"> Delivered</i>
+                            </a>
+                            @*<a class="btn" href="~/Admin/OrdersManagement/Delivered2/@item.Id">
+                                <i class="fa fa-truck"> Delivered</i>
+                            </a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OrderDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RequireDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Receiver)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Customer.Email)
+                    </th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+
+

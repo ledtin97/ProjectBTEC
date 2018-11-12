@@ -1,0 +1,13 @@
+﻿<div class="nn-cart">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <img id="cart-img" class="col-sm-5" src="~/images/shoppingcart.gif" />
+            <ul class="col-sm-7">
+                <li><span id="cart-cnt">@ShoppingCart.Cart.Count</span> items</li>
+                <li>$ <span id="cart-amt">@ShoppingCart.Cart.Amount</span></li>
+                <li><a href="~/Cart/Index">View Cart</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<style id="cart-fly"></style>

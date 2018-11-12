@@ -1,0 +1,15 @@
+﻿@model IEnumerable<LedtinEShop.Models.Category>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-th-list"></span>
+        <strong>Category</strong>
+    </div>
+
+    <div class="list-group">
+        @foreach (var item in Model)
+        {
+            <a href="/Product/ListByCategory/@item.Id" class="list-group-item">@item.Name</a>
+        }
+
+    </div>
+</div>

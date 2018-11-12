@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Shopping Cart</h2>
+
+@if (ShoppingCart.Cart.Count == 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>UnitPrice</th>
+                <th>Discount</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+    </table>
+    <h2>Cart is empty now!</h2>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>UnitPrice</th>
+                <th>Discount</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in ShoppingCart.Cart.Items)
+            {
+                <tr>
+                    <td>@p.Name</td>
+                    <td width="100px">
+                        <img style="width: 100%" src="~/images/products/@p.Image" />
+                    </td>
+                    <td>@p.UnitPrice</td>
+                    <td>@p.Discount</td>
+                    <td>
+                        <input type="number" name="name" value="@p.Quantity" min="1" style="width:50px" data-update-cart="@p.Id" />
+                    </td>
+                    <td>@(p.Quantity * p.UnitPrice * (1 - p.Discount))</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" data-remove-from-cart="@p.Id">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="color: red">Total:</th>
+                <th style="color: red"><span id="table-cart-cnt">@ShoppingCart.Cart.Count</span> items</th>
+                <th style="color: red">$ <span id="table-cart-amt">@ShoppingCart.Cart.Amount</span></th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+}
+<div>
+    <a href="/Cart/Clear" class="btn btn-warning">Clear Cart</a>
+    <a href="/Order/Checkout" class="btn btn-success">Checkout</a>
+    <a href="@Session["BackUrl"]" class="btn btn-info">Continue Shopping</a>
+</div>

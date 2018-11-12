@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledtin Online Shopping Mall</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+	
+</head>
+<body>
+    <div class="container">
+        <header class="nn-header row">
+        	<div class="nn-company">
+	            <h1>Ledtin online shopping mall</h1>
+	            <h5>The center point of the professional programming</h5>
+            </div>
+            <img class="pull-right" src="~/images/header-object.png" />
+        </header>
+
+        <div class="navbar navbar-inverse row">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+			<!--Menu-->
+                @Html.Partial("_Menu")
+			<!--Menu-->
+            </div>
+        </div>
+
+        <div class="nn-sheet row">
+
+            <aside class="col-sm-3">
+                <!--CartInfo-->
+                @Html.Partial("_CartInfo")
+                <!--/CartInfo-->
+
+                <!--Search-->
+                @*@Html.Partial("_Search")*@
+                <!--/Search-->
+
+                <!--Category-->
+                @Html.Action("_Category","Home")
+                <!--/Category-->
+
+                <!--Supplier-->
+                @Html.Action("_Supplier","Home")
+                <!--/Supplier-->
+
+                <!--Special-->
+                @Html.Partial("_Special")
+                <!--/Special-->
+            </aside>
+
+            <article class="col-sm-9">
+                <div class="nn-body">
+                    @RenderBody()
+                </div>
+            </article>
+        </div>
+        <div class= "transport-grid">
+            <div class="col-md-4 shipping">
+                <h3><i class="shipping-icon"></i>Free Shipping</h3>
+                <p>Syphogrants called into the council chamber, and these are changed every day. It is a fundamental rule of their government,</p>
+            </div>
+            <div class="col-md-4 shipping">
+                <h3><i class="correct-icon"></i>100 % Original</h3>
+                <p>Syphogrants called into the council chamber, and these are changed every day. It is a fundamental rule of their government,</p>
+            </div>
+            <div class="col-md-4 return">
+                <h3><i class="return-icon"></i>Free Return</h3>
+                <p>Syphogrants called into the council chamber, and these are changed every day. It is a fundamental rule of their government,</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <footer>
+            <div class="wrap">
+                <div class="contact-section">
+                    <div class="col-md-4 follow text-left">
+                        <h3>Follow Us</h3>
+                        <p>Lorem ipsum dolor sit amet</p>
+                        <div class="social-icons">
+                            <i class="twitter"></i>
+                            <i class="facebook"></i>
+                            <i class="googlepluse"></i>
+                            <i class="pinterest"></i>
+                            <i class="linkedin"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 subscribe text-left">
+                        <h3>Subscribe Us</h3>
+                        <p>Get the latest updates & Offers right in your inbox.</p>
+                        <input type="text" class="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+                        <input type="submit" value="Subscribe">
+                    </div>
+                    <div class="col-md-4 help text-right">
+                        <h3>Need Help?</h3>
+                        <p>Lorem ipsum dolor sit amet</p>
+                        <a href="~/Home/Contact">Contact us</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="footer-middle">
+                    <div class="col-md-6 different-products">
+                        <ul>
+                            <li class="first"> Shop </li> -
+                            <li><a href=""> Mobiles </a></li> |
+                            <li><a href=""> Laptops </a></li> |
+                            <li><a href=""> Cameras </a></li> |
+                            <li><a href=""> Clothing </a></li> |
+                            <li><a href=""> Footwear </a></li> |
+                            <li><a href=""> Jewellery </a></li>
+                        </ul>
+                        <ul>
+                            <li class="first"> Help </li> -
+                            <li><a href=""> Faqs </a></li> |
+                            <li><a href=""> shipping </a></li> |
+                            <li><a href=""> payments </a></li> |
+                            <li><a href=""> cancellation&returns </a></li>
+                        </ul>
+                        <ul>
+                            <li class="first"> account
+                            <li> -
+                            <li><a href=""> log in </a></li> |
+                            <li><a href=""> sign up </a></li> |
+                            <li><a href=""> My WhishList </a></li> |
+                            <li><a href=""> My cart </a></li>
+                        </ul>
+                        <ul>
+                            <li class="first"> boxshop </li> -
+                            <li><a href="~/Home/Contact"> contact us </a></li> |
+                            <li><a href="~/Home/About"> about us </a></li> |
+                            <li><a href=""> careers </a></li> |
+                            <li><a href=""> blog </a></li> |
+                            <li><a href=""> press </a></li>
+                        </ul>
+                        <ul>
+                            <li class="first"> policies</li> -
+                            <li><a href=""> terms of use </a></li> |
+                            <li><a href=""> security </a></li> |
+                            <li><a href=""> privacy policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 about-text text-right">
+                        <h4>About LedtinOnlineShop</h4>
+                        <p>The fashion never alters, and as it is neither disagreeable nor uneasy, so it is suited to the climate, and calculated both for their summers and winters. Every family makes their own clothes; but all among them, women as well as men, learn one or other of the trades formerly mentioned.</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="copyright text-center">
+                    <p>Greenwich - Le Dinh Bao Tin &copy; 2018. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

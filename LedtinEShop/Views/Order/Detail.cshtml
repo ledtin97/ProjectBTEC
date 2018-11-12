@@ -1,0 +1,106 @@
+﻿@model Order
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Order Details</h2>
+<button class="btn btn-default" onclick="printContent('dvmismatch')" ><i class="glyphicon glyphicon-print"> Print</i></button>
+<div id="dvmismatch">
+    <fieldset>
+        <legend>Checkout</legend>
+        <div class="row">
+            @Html.HiddenFor(m => m.Id)
+            <div class="form-group col-sm-6">
+                <label>Customer</label>
+                @Html.TextBoxFor(m => m.CustomerId, new { @class = "form-control", @readonly = true })
+            </div>
+            <div class="form-group col-sm-6">
+                <label>Order Date</label>
+                @Html.TextBoxFor(m => m.OrderDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label>Receiver</label>
+                @Html.TextBoxFor(m => m.Receiver, new { @class = "form-control", @readonly = true })
+            </div>
+            <div class="form-group col-sm-6">
+                <label>Required Date</label>
+                @Html.TextBoxFor(m => m.RequireDate, "{0:yyyy-MM-dd}", new { @class = "form-control nn-date", @readonly = true })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label>Address</label>
+                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @readonly = true })
+            </div>
+            <div class="form-group col-sm-6">
+                <label>Amount</label>
+                @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <label>Notes</label>
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 4, @readonly = true })
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Order Lines</legend>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Unit Price $</th>
+                    <th>Discount</th>
+                    <th>Quantity</th>
+                    <th>Amount $</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var detail in Model.OrderDetails)
+                {
+                    <tr>
+                        <td>@detail.Product.Name</td>
+                        <td width="100px">
+                            <img style="width: 100%" src="~/images/products//@detail.Product.Image" />
+                        </td>
+                        <td>@detail.UnitPrice</td>
+                        <td>@detail.Discount</td>
+                        <td>@detail.Quantity</td>
+                        <td>@(detail.Quantity * detail.UnitPrice * (1 - detail.Discount))</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Total: </th>
+                    <th>@Model.OrderDetails.Sum(o => o.Quantity)</th>
+                    <th>@Model.OrderDetails.Sum(o => o.Quantity * o.UnitPrice * (1 - o.Discount))</th>
+                </tr>
+            </tfoot>
+        </table>
+    </fieldset>
+</div>
+
+
+<style>
+    #ui-datepicker-div {
+        z-index: 2000 !important;
+    }
+</style>
+<script>
+function printContent(el){
+    var restorepage = document.body.innerHTML;
+    var printcontent = document.getElementById(el).innerHTML;
+    document.body.innerHTML = printcontent;
+    window.print();
+    document.body.innerHTML = restorepage;
+}
+</script>
